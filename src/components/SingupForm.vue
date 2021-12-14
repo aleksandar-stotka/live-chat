@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form class="form" @submit.prevent="handleSubmit">
     <input
       type="text"
       required

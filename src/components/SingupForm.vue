@@ -14,18 +14,21 @@
 
 <script>
 import { ref } from "vue";
+import useSingup from "../composables/useSingup";
 export default {
   setup() {
+    const { error, singup } = useSingup();
     //refs
-    const displayname = ref("");
+    const displayName = ref("");
     const email = ref("");
     const password = ref("");
 
-    const handleSubmit = () => {
-      console.log(displayname.value, email, password.value);
+    const handleSubmit = async () => {
+      await singup(email.value, password.value, displayName.value);
+      console.log("user sing up");
     };
 
-    return { displayname, email, password, handleSubmit };
+    return { displayName, email, password, handleSubmit };
   },
 };
 </script>

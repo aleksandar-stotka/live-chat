@@ -1,0 +1,26 @@
+body {
+    background: wheat;
+    color: #444;
+}
+.container {
+    width: 90%;
+    max-width: 960px;
+    margin: 80px auto;
+    border-radius: 20px;
+    box-shadow: 2px 4px 6px rgb(53, 49, 49);
+    background: white;
+}
+.error {
+    color: rgb(206, 36, 36);
+    font-size: 14px;
+    
+}
+button {
+    text-decoration: none;
+    background: rgb(66, 78, 66);
+    color:white;
+    font-weight: bold;
+    border: 0;
+    border-radius: 20px;
+    padding: 10px 20px;
+}

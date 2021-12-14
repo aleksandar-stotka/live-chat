@@ -20,8 +20,9 @@ const singup = async (email, password, displayName) => {
     error.value = null;
     console.log(res.user);
     return res;
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(error.message);
+    error.value = err.message;
   }
 };
 

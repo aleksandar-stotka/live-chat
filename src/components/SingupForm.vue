@@ -8,6 +8,7 @@
     />
     <input type="email" required placeholder="email" v-model="email" />
     <input type="password" required placeholder="password" v-model="password" />
+    <div class="error">{{ error }}</div>
     <button>Sing up</button>
   </form>
 </template>
@@ -16,7 +17,7 @@
 import { ref } from "vue";
 import useSingup from "../composables/useSingup";
 export default {
-  setup() {
+  setup(props, context) {
     const { error, singup } = useSingup();
     //refs
     const displayName = ref("");
@@ -25,10 +26,12 @@ export default {
 
     const handleSubmit = async () => {
       await singup(email.value, password.value, displayName.value);
-      console.log("user sing up");
+      if (!error.value) {
+        context.emit("signup"); /// emit event to listein in welcome component
+      }
     };
 
-    return { displayName, email, password, handleSubmit };
+    return { displayName, email, password, handleSubmit, error };
   },
 };
 </script>

@@ -24,3 +24,10 @@ button {
     border-radius: 20px;
     padding: 10px 20px;
 }
+.container {
+    width: 30rem;
+    margin: 3rem auto;
+    text-align: center;
+    align-items: center;
+    
+}

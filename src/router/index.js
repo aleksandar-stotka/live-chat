@@ -11,7 +11,6 @@ const requireAuth = (to, from, next) => {
   } else {
     next();
   }
-  next();
 };
 
 const routes = [

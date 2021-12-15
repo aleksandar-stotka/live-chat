@@ -3,9 +3,10 @@
     <textarea
       placeholder="Type a message and hit enter to send"
       v-model="message"
-      @keypress.enter.prevent="hadleSubmit"
+      @keypress.enter.prevent="handleSubmit"
     >
     </textarea>
+    <div class="error">{{ error }}</div>
     <!-- when i press enter fire function handlesubmit -->
   </fom>
 </template>
@@ -14,12 +15,14 @@
 import { timestamp } from "../firebase/config";
 import { ref } from "vue";
 import getUser from "../composables/getUser";
+import useCollection from "../composables/useCollection";
 export default {
   setup() {
-    const message = ref("");
     const { user } = getUser();
+    const { addDoc, error } = useCollection("message");
+    const message = ref("");
 
-    const hadleSubmit = async () => {
+    const handleSubmit = async () => {
       //when ress enter create chat object
       //we create new chat object
       const chat = {
@@ -27,11 +30,14 @@ export default {
         message: message.value,
         createdAt: timestamp(),
       };
-      console.log(chat);
-      message.value = "";
+
+      await addDoc(chat);
+      if (!error.value) {
+        message.value = "";
+      }
     };
 
-    return { hadleSubmit, message };
+    return { handleSubmit, message, error };
   },
 };
 </script>

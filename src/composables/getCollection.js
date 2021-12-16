@@ -9,18 +9,20 @@ const getCollection = (collection) => {
     .collection(collection)
     .orderBy("createdAt");
 
-  collection.onSnapshot(
+  collectionRef.onSnapshot(
     (snap) => {
       let results = [];
-      snap.docs.forEeach((doc) => {
+      snap.docs.forEach((doc) => {
         doc.data().createdAt && results.push({ ...doc.data(), id: doc.id });
       });
       documents.value = results;
+      console.log(documents);
       error.value = null;
     },
     (err) => {
       console.log(err.message);
-      documents.value = nullerror.value = "cold not fetch data ";
+      documents.value = null;
+      error.value = "cold not fetch data ";
     }
   );
   return { documents, error };

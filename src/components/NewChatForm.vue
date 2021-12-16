@@ -31,10 +31,7 @@ export default {
         createdAt: timestamp(),
       };
 
-      await addDoc(chat);
-      if (!error.value) {
-        message.value = "";
-      }
+      await addDoc(chat).then((message.value = ""));
     };
 
     return { handleSubmit, message, error };

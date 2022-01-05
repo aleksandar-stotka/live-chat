@@ -1,20 +1,54 @@
 <template>
-  <div class="welcome container">
-    <div v-if="showLogin">
-      <LoginForm @login="enterChat" />
-      <p>
-        no account yet? <span @click="showLogin = false">Singup</span> instead
-      </p>
-      <h2>Login</h2>
-    </div>
-    <div v-else>
-      <h2>Sing up</h2>
-      <SingupForm @signup="enterChat" />
-      <p>
-        Already registered? <span @click="showLogin = true">Login</span> instead
-      </p>
+  <div>
+    <section class="showcase">
+      <header>
+        <h2 class="logo">event</h2>
+        <div class="toggle active">
+          <span @click="editProgect" class="material-icons">
+            view_headline
+          </span>
+        </div>
+      </header>
+      <video class="video" src="@/assets/back.mp4" muted loop autoplay></video>
+      <div class="overlay"></div>
+      <div class="text">
+        <h2>something</h2>
+        <h3>Exploring</h3>
+      </div>
+      <div class="welcome container">
+        <div v-if="showLogin">
+          <LoginForm @login="enterChat" />
+          <p>
+            no account yet?
+            <span @click="showLogin = false">Singup</span> instead
+          </p>
+          <h2>Login</h2>
+        </div>
+        <div v-else>
+          <h2>Sing up</h2>
+          <SingupForm @signup="enterChat" />
+          <p>
+            Already registered?
+            <span @click="showLogin = true">Login</span> instead
+          </p>
+        </div>
+      </div>
+      <ul class="social">
+        <li>facebook</li>
+        <li>twiter</li>
+        <li>instagram</li>
+      </ul>
+    </section>
+    <div class="menu">
+      <ul>
+        <li><a href="">homr</a></li>
+        <li><a href="">homr</a></li>
+        <li><a href="">homr</a></li>
+      </ul>
     </div>
   </div>
+
+  <!--<!-->
 </template>
 
 <script>
@@ -47,6 +81,7 @@ export default {
   text-align: center;
   padding: 20px 0;
   width: 30rem;
+  position: absolute;
 }
 .welcome form {
   width: 300px;
@@ -55,6 +90,9 @@ export default {
 .welcome label {
   display: block;
   margin: 20px 0 10px;
+}
+.video {
+  opacity: 9;
 }
 .welcome input {
   width: 100%;
@@ -72,5 +110,44 @@ export default {
 }
 .welcome button {
   margin: 20px auto;
+}
+
+.showcase {
+  position: absolute;
+  right: 0;
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.showcase header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 100px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+.menu {
+  display: none;
+}
+.toggle .active {
 }
 </style>
